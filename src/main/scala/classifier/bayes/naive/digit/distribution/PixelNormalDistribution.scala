@@ -1,11 +1,11 @@
 package classifier.bayes.naive.digit.distribution
 
 import classifier.bayes.naive.digit.DigitSet
+import scala.math.{exp, sqrt, Pi, log}
 
 /**
  * Created by mhbackes on 19/05/15.
  */
-
 class PixelNormalDistribution(private val _mean: Double,
                               private val _variance: Double) {
   def mean = _mean
@@ -14,10 +14,10 @@ class PixelNormalDistribution(private val _mean: Double,
 
   def likelihood(x: Double): Double = {
     val diff = x - _mean
-    Math.exp(-(diff * diff) / (2 * _variance)) / Math.sqrt(2 * Math.PI * _variance)
+    exp(-(diff * diff) / (2 * _variance)) / sqrt(2 * Pi * _variance)
   }
 
-  def logLikelihood(x: Double): Double = Math.log(likelihood(x))
+  def logLikelihood(x: Double): Double = log(likelihood(x))
 
 }
 

@@ -46,6 +46,18 @@ class ConfusionMatrix(private val _bayes: NaiveBayesDigitClassifier,
     (precision_, recall_, fScore_)
   }
 
+  override def toString: String = {
+    var str = (0 until Digit.MAX_DIGIT).foldLeft("")((i, s) => i + "\t" + s) + "\n"
+    for (i <- 0 until Digit.MAX_DIGIT){
+      str += i + "\t"
+      for (j <- 0 until Digit.MAX_DIGIT){
+        str += cell(i, j) + "\t"
+      }
+      str += "\n"
+    }
+    str
+  }
+
   private def incCell(i: Int, j: Int) = _cells(ConfusionMatrix.index(i, j)) += 1
 
   private def test(digit: Digit) {

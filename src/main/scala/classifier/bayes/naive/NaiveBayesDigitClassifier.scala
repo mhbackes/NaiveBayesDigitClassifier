@@ -54,6 +54,8 @@ object NaiveBayesDigitClassifier {
       val accuracy = confusionMatrix.accuracy
       sumAccuracy += accuracy
       println("Iteration: " + i + " | Accuracy: " + accuracy)
+      println("Confusion Matrix (Actual\\Predicted)")
+      println(confusionMatrix.toString)
       println("Digit\tPrecision\t\tRecall\t\t\tF-Score")
       for(j <- 0 until Digit.MAX_DIGIT) {
         val (precision, recall, fScore) = confusionMatrix.metrics(j)
